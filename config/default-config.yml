@@ -1,0 +1,48 @@
+analysis:
+  failOnSeverity: ERROR
+  parallel: true
+  jvmTarget: "17"
+  includes:
+    - "**/*.kt"
+  excludes:
+    - "**/build/**"
+    - "**/.gradle/**"
+    - "**/generated/**"
+
+ruleSets:
+  builtin.psi:
+    TodoComment:
+      enabled: true
+      severity: INFO
+    NotNullAssertion:
+      enabled: true
+      severity: WARNING
+    EmptyCatchBlock:
+      enabled: true
+      severity: ERROR
+    LongMethod:
+      enabled: true
+      severity: WARNING
+      thresholds:
+        maxLines: 60
+    NestedBlockDepth:
+      enabled: true
+      severity: WARNING
+      thresholds:
+        maxDepth: 4
+    LargeClass:
+      enabled: true
+      severity: WARNING
+      thresholds:
+        maxMembers: 20
+        maxLines: 300
+  builtin.semantic:
+    UnsafeNullability:
+      enabled: false
+      severity: WARNING
+    SuspiciousExtension:
+      enabled: false
+      severity: WARNING
+    ScopeFunctionMisuse:
+      enabled: false
+      severity: INFO

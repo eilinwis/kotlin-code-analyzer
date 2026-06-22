@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/cli" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/api" />
+            <option value="$PROJECT_DIR$/core/domain" />
+            <option value="$PROJECT_DIR$/core/engine" />
+            <option value="$PROJECT_DIR$/infrastructure" />
+            <option value="$PROJECT_DIR$/infrastructure/analysis" />
+            <option value="$PROJECT_DIR$/infrastructure/config" />
+            <option value="$PROJECT_DIR$/infrastructure/psi" />
+            <option value="$PROJECT_DIR$/infrastructure/reporting" />
+            <option value="$PROJECT_DIR$/rules" />
+            <option value="$PROJECT_DIR$/rules/psi" />
+            <option value="$PROJECT_DIR$/rules/semantic" />
+            <option value="$PROJECT_DIR$/samples" />
+            <option value="$PROJECT_DIR$/samples/custom-rules" />
+            <option value="$PROJECT_DIR$/testing" />
+            <option value="$PROJECT_DIR$/testing/integration" />
+            <option value="$PROJECT_DIR$/testing/rule-tests" />
+            <option value="$PROJECT_DIR$/testing/testkit" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
