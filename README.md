@@ -1,8 +1,6 @@
 # Kotlin Code Analyzer
 
-[![CI](https://github.com/kotlin-code-analyzer/kotlin-code-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/kotlin-code-analyzer/kotlin-code-analyzer/actions/workflows/ci.yml)
-
-A production-quality command-line static analysis tool for Kotlin source code. Built on **Kotlin PSI** and the **Standalone Analysis API** — the same foundations used by the Kotlin compiler and IDE.
+A command-line static analysis tool for Kotlin source code. Built on **Kotlin PSI** and the **Standalone Analysis API** — the same foundations used by the Kotlin compiler and IDE.
 
 ## Quick Start
 
@@ -45,15 +43,9 @@ java -jar cli/build/libs/cli-0.1.0-SNAPSHOT-all.jar rules list
 - **SPI plugin system** for custom rule JARs
 - **Multiple report formats**: console, JSON, SARIF, Checkstyle XML
 
-See [docs/architecture.md](docs/architecture.md) for details.
-
 ## Development
 
 ```bash
 ./gradlew check          # Run all tests
 ./gradlew koverXmlReport # Coverage report
 ```
-
-## License
-
-Apache License 2.0 — see [LICENSE](LICENSE).
