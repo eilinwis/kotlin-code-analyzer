@@ -16,7 +16,7 @@ jobs:
         jdk: [21]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses:  actions/checkout@v4
 
       - name: Set up JDK ${{ matrix.jdk }}
         uses: actions/setup-java@v4
