@@ -1,0 +1,10 @@
+site_name: Kotlin Code Analyzer
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Configuration: configuration.md
+  - Architecture: architecture.md
+  - Extending Rules: extending-rules.md
+  - Report Formats: report-formats.md

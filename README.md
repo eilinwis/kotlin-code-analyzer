@@ -36,13 +36,6 @@ java -jar cli/build/libs/cli-0.1.0-SNAPSHOT-all.jar rules list
 | `SuspiciousExtension` | Semantic | Public extensions on built-in types |
 | `ScopeFunctionMisuse` | Semantic | Misuse of let/apply/run/also |
 
-## Architecture
-
-- **Clean Architecture** with pure domain module (no compiler deps)
-- **Tiered rules**: fast PSI syntax rules + semantic Analysis API rules
-- **SPI plugin system** for custom rule JARs
-- **Multiple report formats**: console, JSON, SARIF, Checkstyle XML
-
 ## Development
 
 ```bash
