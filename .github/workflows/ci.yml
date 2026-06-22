@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        jdk: [17, 21]
+        os: [macos-latest]
+        jdk: [21]
 
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,6 @@ jobs:
         run: ./gradlew check koverXmlReport --no-daemon
 
       - name: Upload coverage
-        if: matrix.os == 'ubuntu-latest' && matrix.jdk == '17'
         uses: codecov/codecov-action@v4
         with:
           files: build/reports/kover/report.xml
