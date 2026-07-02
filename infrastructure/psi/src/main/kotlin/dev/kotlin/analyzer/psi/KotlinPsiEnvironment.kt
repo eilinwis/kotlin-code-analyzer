@@ -10,7 +10,7 @@ import java.nio.file.Path
 import kotlin.io.path.name
 import kotlin.io.path.readText
 
-public class KotlinPsiEnvironment : AutoCloseable {
+class KotlinPsiEnvironment : AutoCloseable {
     private val disposable = Disposer.newDisposable("KotlinPsiEnvironment")
     private val environment = KotlinCoreEnvironment.createForProduction(
         disposable,
@@ -18,15 +18,15 @@ public class KotlinPsiEnvironment : AutoCloseable {
         EnvironmentConfigFiles.JVM_CONFIG_FILES,
     )
 
-    public val project get() = environment.project
+    val project get() = environment.project
     private val psiFactory = KtPsiFactory(project, eventSystemEnabled = false)
 
-    public fun parseFile(path: Path): KtFile {
+    fun parseFile(path: Path): KtFile {
         val text = path.readText()
         return parseText(path.toString(), text)
     }
 
-    public fun parseText(path: String, text: String): KtFile {
+    fun parseText(path: String, text: String): KtFile {
         val fileName = Path.of(path).name
         return psiFactory.createFile(fileName, text)
     }

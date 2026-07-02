@@ -1,6 +1,6 @@
 package dev.kotlin.analyzer.domain
 
-public data class Suppression(
+data class Suppression(
     val ruleId: RuleId?,
     val path: String?,
     val line: Int?,

@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtVisitorVoid
 
 @RequiresAnalysisApi
-public class ScopeFunctionMisuseRule : AbstractSemanticRule(
+class ScopeFunctionMisuseRule : AbstractSemanticRule(
     RuleDescriptor(
         id = RuleId("ScopeFunctionMisuse"),
         ruleSetId = RuleSetId("builtin.semantic"),

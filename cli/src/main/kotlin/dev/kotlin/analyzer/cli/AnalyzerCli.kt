@@ -26,14 +26,14 @@ import kotlin.io.path.createDirectories
 import kotlin.io.path.writeText
 import kotlin.system.exitProcess
 
-public class AnalyzerCli : CliktCommand(name = "kotlin-code-analyzer") {
+class AnalyzerCli : CliktCommand(name = "kotlin-code-analyzer") {
     override fun run() = Unit
 
     override fun help(context: Context): String =
         "Static analysis tool for Kotlin source code using PSI and Analysis API"
 }
 
-public class AnalyzeCommand : CliktCommand(name = "analyze") {
+class AnalyzeCommand : CliktCommand(name = "analyze") {
     private val paths by argument("paths").path(mustExist = true).multiple()
     private val configPath by option("-c", "--config").path(mustExist = false)
     private val exclude by option("--exclude").multiple()
@@ -47,6 +47,7 @@ public class AnalyzeCommand : CliktCommand(name = "analyze") {
     private val verbose by option("--verbose").flag()
 
     override fun run() {
+        print("run for AnalyzeCommand")
         val loader = YamlConfigLoader()
         val baseConfig = loader.load(configPath)
         val config = baseConfig.copy(
@@ -97,14 +98,15 @@ public class AnalyzeCommand : CliktCommand(name = "analyze") {
     }
 }
 
-public class RulesCommand : CliktCommand(name = "rules") {
+class RulesCommand : CliktCommand(name = "rules") {
     override fun run() = Unit
 }
 
-public class RulesListCommand : CliktCommand(name = "list") {
+class RulesListCommand : CliktCommand(name = "list") {
     private val asJson by option("--json").flag()
 
     override fun run() {
+        print("run for RulesListCommand")
         val registry = RuleRegistry.discover(
             builtInContributors = listOf(BuiltinPsiRules.contributor, BuiltinSemanticRules.contributor),
         )
@@ -128,31 +130,34 @@ public class RulesListCommand : CliktCommand(name = "list") {
     private fun String.quoteJson(): String = "\"" + replace("\"", "\\\"") + "\""
 }
 
-public class InitConfigCommand : CliktCommand(name = "init-config") {
+class InitConfigCommand : CliktCommand(name = "init-config") {
     private val output by option("--output", "-o").path().default(java.nio.file.Path.of("analyzer.yml"))
 
     override fun run() {
+        print("run for InitConfigCommand")
         val loader = YamlConfigLoader()
         output.writeText(loader.defaultYaml())
         echo("Created default configuration at $output")
     }
 }
 
-public class VersionCommand : CliktCommand(name = "version") {
+class VersionCommand : CliktCommand(name = "version") {
     override fun run() {
+        print("run for VersionCommand")
         echo("kotlin-code-analyzer 0.1.0-SNAPSHOT")
     }
 }
 
-public object ExitCodes {
-    public const val SUCCESS: Int = 0
-    public const val ISSUES_FOUND: Int = 1
-    public const val CONFIG_ERROR: Int = 2
-    public const val INTERNAL_ERROR: Int = 3
+object ExitCodes {
+    const val SUCCESS: Int = 0
+    const val ISSUES_FOUND: Int = 1
+    const val CONFIG_ERROR: Int = 2
+    const val INTERNAL_ERROR: Int = 3
 }
 
-public fun main(args: Array<String>) {
+fun main(args: Array<String>) {
     try {
+        print("Starting code analysis ...")
         AnalyzerCli()
             .subcommands(
                 AnalyzeCommand(),

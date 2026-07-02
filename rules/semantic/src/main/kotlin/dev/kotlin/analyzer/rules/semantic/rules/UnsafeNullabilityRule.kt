@@ -17,7 +17,7 @@ import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtVisitorVoid
 
 @RequiresAnalysisApi
-public class UnsafeNullabilityRule : AbstractSemanticRule(
+class UnsafeNullabilityRule : AbstractSemanticRule(
     RuleDescriptor(
         id = RuleId("UnsafeNullability"),
         ruleSetId = RuleSetId("builtin.semantic"),

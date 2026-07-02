@@ -12,7 +12,7 @@ import dev.kotlin.analyzer.domain.Severity
 import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import dev.kotlin.analyzer.psi.PsiElementLocator
 
-public class TodoCommentRule : AbstractPsiRule(
+class TodoCommentRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("TodoComment"),
         ruleSetId = RuleSetId("builtin.psi"),

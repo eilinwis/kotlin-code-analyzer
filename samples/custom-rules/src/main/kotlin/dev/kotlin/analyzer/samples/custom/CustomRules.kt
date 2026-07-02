@@ -13,14 +13,14 @@ import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import dev.kotlin.analyzer.psi.PsiElementLocator
 import org.jetbrains.kotlin.psi.KtVisitorVoid
 
-public class CustomRuleContributor : RuleContributor {
+class CustomRuleContributor : RuleContributor {
     override val id: RuleSetId = RuleSetId("com.example.custom")
 
     override fun contribute(schema: RuleConfigurationSchema): List<dev.kotlin.analyzer.api.Rule> =
         listOf(WhileTrueRule())
 }
 
-public class WhileTrueRule : AbstractPsiRule(
+class WhileTrueRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("WhileTrue"),
         ruleSetId = RuleSetId("com.example.custom"),

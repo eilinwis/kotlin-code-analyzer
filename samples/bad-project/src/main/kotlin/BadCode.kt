@@ -1,5 +1,3 @@
-// Sample project with intentional code smells for integration testing
-
 fun main() {
     val name: String? = null
     val forced = name!! // NotNullAssertion

@@ -11,10 +11,10 @@ import dev.kotlin.analyzer.psi.KotlinProjectLoader
 import dev.kotlin.analyzer.psi.SourceFileCollector
 import java.nio.file.Path
 
-public class AnalyzeProjectUseCase(
+class AnalyzeProjectUseCase(
     private val builtInContributors: List<RuleContributor>,
 ) {
-    public fun analyze(
+    fun analyze(
         paths: List<Path>,
         config: AnalysisConfig,
         reporters: List<Reporter>,
@@ -49,6 +49,6 @@ public class AnalyzeProjectUseCase(
         }
     }
 
-    public fun shouldFail(result: AnalysisResult, failOn: dev.kotlin.analyzer.domain.Severity): Boolean =
+    fun shouldFail(result: AnalysisResult, failOn: dev.kotlin.analyzer.domain.Severity): Boolean =
         result.findings.any { it.severity.isAtLeast(failOn) }
 }
