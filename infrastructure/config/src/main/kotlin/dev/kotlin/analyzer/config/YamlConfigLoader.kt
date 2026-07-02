@@ -39,7 +39,6 @@ analysis:
     - "**/build/**"
     - "**/.gradle/**"
     - "**/generated/**"
-    - "**/bad-project/**"
 
 ruleSets:
   builtin.psi:
