@@ -6,16 +6,16 @@ import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtFile
 
-public class SuppressionEngine {
+class SuppressionEngine {
     private val fileSuppressions: MutableMap<String, List<Suppression>> = mutableMapOf()
 
-    public fun indexFile(file: KotlinAnalyzedFile) {
+    fun indexFile(file: KotlinAnalyzedFile) {
         val suppressions = mutableListOf<Suppression>()
         collectSuppressions(file.ktFile, file.path, suppressions)
         fileSuppressions[file.path] = suppressions
     }
 
-    public fun filter(findings: List<Finding>): List<Finding> =
+    fun filter(findings: List<Finding>): List<Finding> =
         findings.filterNot { finding -> isSuppressed(finding) }
 
     private fun isSuppressed(finding: Finding): Boolean {

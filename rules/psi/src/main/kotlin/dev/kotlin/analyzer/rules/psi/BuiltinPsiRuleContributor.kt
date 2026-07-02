@@ -11,7 +11,7 @@ import dev.kotlin.analyzer.rules.psi.rules.NestedBlockDepthRule
 import dev.kotlin.analyzer.rules.psi.rules.NotNullAssertionRule
 import dev.kotlin.analyzer.rules.psi.rules.TodoCommentRule
 
-public class BuiltinPsiRuleContributor : RuleContributor {
+class BuiltinPsiRuleContributor : RuleContributor {
     override val id: RuleSetId = RuleSetId("builtin.psi")
 
     override fun contribute(schema: RuleConfigurationSchema): List<dev.kotlin.analyzer.api.Rule> = listOf(
@@ -24,6 +24,6 @@ public class BuiltinPsiRuleContributor : RuleContributor {
     )
 }
 
-public object BuiltinPsiRules {
-    public val contributor: RuleContributor = BuiltinPsiRuleContributor()
+object BuiltinPsiRules {
+     val contributor: RuleContributor = BuiltinPsiRuleContributor()
 }

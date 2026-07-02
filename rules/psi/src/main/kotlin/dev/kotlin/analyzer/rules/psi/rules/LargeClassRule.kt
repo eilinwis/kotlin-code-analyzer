@@ -12,7 +12,7 @@ import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import dev.kotlin.analyzer.psi.PsiElementLocator
 import org.jetbrains.kotlin.psi.KtClass
 
-public class LargeClassRule : AbstractPsiRule(
+class LargeClassRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("LargeClass"),
         ruleSetId = RuleSetId("builtin.psi"),

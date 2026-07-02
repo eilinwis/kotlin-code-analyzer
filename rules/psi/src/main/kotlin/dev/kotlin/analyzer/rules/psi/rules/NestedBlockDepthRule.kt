@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.psi.KtTryExpression
 import org.jetbrains.kotlin.psi.KtWhenExpression
 import org.jetbrains.kotlin.psi.KtVisitorVoid
 
-public class NestedBlockDepthRule : AbstractPsiRule(
+class NestedBlockDepthRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("NestedBlockDepth"),
         ruleSetId = RuleSetId("builtin.psi"),

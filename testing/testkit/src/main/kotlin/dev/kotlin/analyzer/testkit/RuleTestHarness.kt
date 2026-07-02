@@ -12,10 +12,10 @@ import dev.kotlin.analyzer.domain.AnalysisConfig
 import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import dev.kotlin.analyzer.psi.KotlinPsiEnvironment
 
-public class RuleTestHarness {
+class RuleTestHarness {
     private val psiEnvironment = KotlinPsiEnvironment()
 
-    public fun runRule(
+    fun runRule(
         rule: PsiRule,
         code: String,
         path: String = "Test.kt",
@@ -36,7 +36,7 @@ public class RuleTestHarness {
         return findings
     }
 
-    public fun runRules(
+    fun runRules(
         rules: List<PsiRule>,
         code: String,
         path: String = "Test.kt",
@@ -48,7 +48,7 @@ public class RuleTestHarness {
             .findings
     }
 
-    public fun close() {
+    fun close() {
         psiEnvironment.close()
     }
 }

@@ -12,9 +12,8 @@ import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import dev.kotlin.analyzer.psi.PsiElementLocator
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.KtUnaryExpression
-import org.jetbrains.kotlin.psi.KtVisitorVoid
 
-public class NotNullAssertionRule : AbstractPsiRule(
+class NotNullAssertionRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("NotNullAssertion"),
         ruleSetId = RuleSetId("builtin.psi"),

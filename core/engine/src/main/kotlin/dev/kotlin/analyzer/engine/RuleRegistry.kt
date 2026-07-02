@@ -11,10 +11,10 @@ import java.net.URLClassLoader
 import java.nio.file.Path
 import java.util.ServiceLoader
 
-public class RuleRegistry(
+class RuleRegistry(
     private val contributors: List<RuleContributor>,
 ) {
-    public fun allRules(config: AnalysisConfig): List<ConfiguredRule> {
+    fun allRules(config: AnalysisConfig): List<ConfiguredRule> {
         val schema = ConfigRuleSchema(config)
         return contributors.flatMap { contributor ->
             contributor.contribute(schema).map { rule ->
@@ -26,13 +26,13 @@ public class RuleRegistry(
         }.filter { it.config.enabled }
     }
 
-    public fun allDescriptors(): List<dev.kotlin.analyzer.domain.RuleDescriptor> =
+    fun allDescriptors(): List<dev.kotlin.analyzer.domain.RuleDescriptor> =
         contributors.flatMap { contributor ->
             contributor.contribute(AlwaysEnabledSchema).map { it.descriptor }
         }
 
-    public companion object {
-        public fun discover(
+    companion object {
+        fun discover(
             extraPluginJars: List<Path> = emptyList(),
             builtInContributors: List<RuleContributor>,
         ): RuleRegistry {
@@ -52,7 +52,7 @@ public class RuleRegistry(
     }
 }
 
-public data class ConfiguredRule(
+data class ConfiguredRule(
     val rule: Rule,
     val config: RuleConfig,
 )

@@ -2,10 +2,10 @@ package dev.kotlin.analyzer.psi
 
 import java.nio.file.Path
 
-public class KotlinProjectLoader(
+class KotlinProjectLoader(
     private val psiEnvironment: KotlinPsiEnvironment,
 ) {
-    public fun loadFiles(paths: List<Path>): List<KotlinAnalyzedFile> =
+    fun loadFiles(paths: List<Path>): List<KotlinAnalyzedFile> =
         paths.map { path ->
             val ktFile = psiEnvironment.parseFile(path)
             KotlinAnalyzedFile(
