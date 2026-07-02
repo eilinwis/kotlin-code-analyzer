@@ -94,7 +94,7 @@ class RuleEngine(
                 }
             }
         } catch (_: Exception) {
-            // Semantic analysis unavailable; PSI findings are still returned.
+            println("Semantic analysis unavailable; PSI findings are still returned.")
         }
         return findings
     }
