@@ -23,6 +23,7 @@ import dev.kotlin.analyzer.reporting.parseReportFormats
 import dev.kotlin.analyzer.rules.psi.BuiltinPsiRules
 import dev.kotlin.analyzer.rules.semantic.BuiltinSemanticRules
 import kotlin.io.path.createDirectories
+import kotlin.io.path.exists
 import kotlin.io.path.writeText
 import kotlin.system.exitProcess
 
@@ -47,7 +48,6 @@ class AnalyzeCommand : CliktCommand(name = "analyze") {
     private val verbose by option("--verbose").flag()
 
     override fun run() {
-        print("run for AnalyzeCommand")
         val loader = YamlConfigLoader()
         val baseConfig = loader.load(configPath)
         val config = baseConfig.copy(
@@ -106,7 +106,6 @@ class RulesListCommand : CliktCommand(name = "list") {
     private val asJson by option("--json").flag()
 
     override fun run() {
-        print("run for RulesListCommand")
         val registry = RuleRegistry.discover(
             builtInContributors = listOf(BuiltinPsiRules.contributor, BuiltinSemanticRules.contributor),
         )
@@ -132,18 +131,29 @@ class RulesListCommand : CliktCommand(name = "list") {
 
 class InitConfigCommand : CliktCommand(name = "init-config") {
     private val output by option("--output", "-o").path().default(java.nio.file.Path.of("analyzer.yml"))
+    private val force by option("--force", help = "Overwrite existing configuration file").flag()
 
     override fun run() {
-        print("run for InitConfigCommand")
+        val existed = output.exists()
+        if (existed && !force) {
+            echo("Configuration already exists at $output; use --force to overwrite", err = true)
+            exitProcess(ExitCodes.CONFIG_ERROR)
+        }
+
         val loader = YamlConfigLoader()
         output.writeText(loader.defaultYaml())
-        echo("Created default configuration at $output")
+        echo(
+            if (existed) {
+                "Overwrote configuration at $output"
+            } else {
+                "Created default configuration at $output"
+            },
+        )
     }
 }
 
 class VersionCommand : CliktCommand(name = "version") {
     override fun run() {
-        print("run for VersionCommand")
         echo("kotlin-code-analyzer 0.1.0-SNAPSHOT")
     }
 }
@@ -157,7 +167,6 @@ object ExitCodes {
 
 fun main(args: Array<String>) {
     try {
-        print("Starting code analysis ...")
         AnalyzerCli()
             .subcommands(
                 AnalyzeCommand(),
