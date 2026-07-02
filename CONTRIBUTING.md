@@ -12,4 +12,3 @@
 2. Register in the appropriate `RuleContributor`
 3. Add configuration to `config/default-config.yml`
 4. Add rule-validation tests
-5. Document in `docs/rules/`
