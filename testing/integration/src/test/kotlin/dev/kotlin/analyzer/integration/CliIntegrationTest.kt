@@ -3,7 +3,6 @@ package dev.kotlin.analyzer.integration
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
-import java.nio.file.Path
 import kotlin.io.path.Path
 
 class CliIntegrationTest {
@@ -11,7 +10,7 @@ class CliIntegrationTest {
     fun `cli analyze finds issues in bad project`() {
         val projectRoot = Path(System.getProperty("project.root", System.getProperty("user.dir")))
         val badProject = projectRoot.resolve("samples/bad-project/src/main/kotlin")
-        val jar = projectRoot.resolve("cli/build/libs/cli-0.1.0-SNAPSHOT-all.jar")
+        val jar = projectRoot.resolve("cli/build/libs/cli-1.0.0-all.jar")
 
         val process = ProcessBuilder(
             "java",
