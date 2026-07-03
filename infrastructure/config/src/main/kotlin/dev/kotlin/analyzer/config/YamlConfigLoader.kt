@@ -45,6 +45,9 @@ ruleSets:
     TodoComment:
       enabled: true
       severity: INFO
+    UnusedImport:
+      enabled: true
+      severity: WARNING
     NotNullAssertion:
       enabled: true
       severity: WARNING
