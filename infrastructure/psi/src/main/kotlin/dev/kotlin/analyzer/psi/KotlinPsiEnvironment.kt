@@ -1,5 +1,6 @@
 package dev.kotlin.analyzer.psi
 
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Disposer
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
@@ -10,7 +11,7 @@ import java.nio.file.Path
 import kotlin.io.path.name
 import kotlin.io.path.readText
 
-class KotlinPsiEnvironment : AutoCloseable {
+public class KotlinPsiEnvironment : AutoCloseable {
     private val disposable = Disposer.newDisposable("KotlinPsiEnvironment")
     private val environment = KotlinCoreEnvironment.createForProduction(
         disposable,
@@ -18,15 +19,15 @@ class KotlinPsiEnvironment : AutoCloseable {
         EnvironmentConfigFiles.JVM_CONFIG_FILES,
     )
 
-    val project get() = environment.project
+    public val project: Project get() = environment.project
     private val psiFactory = KtPsiFactory(project, eventSystemEnabled = false)
 
-    fun parseFile(path: Path): KtFile {
+    public fun parseFile(path: Path): KtFile {
         val text = path.readText()
         return parseText(path.toString(), text)
     }
 
-    fun parseText(path: String, text: String): KtFile {
+    public fun parseText(path: String, text: String): KtFile {
         val fileName = Path.of(path).name
         return psiFactory.createFile(fileName, text)
     }

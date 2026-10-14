@@ -5,11 +5,11 @@ import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.io.path.isRegularFile
 
-class SourceFileCollector(
+public class SourceFileCollector(
     private val includes: List<String> = listOf("**/*.kt"),
     private val excludes: List<String> = emptyList(),
 ) {
-    fun collect(paths: List<Path>): List<Path> {
+    public fun collect(paths: List<Path>): List<Path> {
         val fileSystem = FileSystems.getDefault()
         val includeMatchers = includes.map { fileSystem.getPathMatcher("glob:$it") }
         val excludeMatchers = excludes.map { fileSystem.getPathMatcher("glob:$it") }

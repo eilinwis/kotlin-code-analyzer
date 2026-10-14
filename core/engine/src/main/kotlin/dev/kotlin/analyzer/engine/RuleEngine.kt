@@ -17,10 +17,10 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 
-class RuleEngine(
+public class RuleEngine(
     private val suppressionEngine: SuppressionEngine = SuppressionEngine(),
 ) {
-     fun analyze(
+     public fun analyze(
         files: List<KotlinAnalyzedFile>,
         configuredRules: List<ConfiguredRule>,
         config: AnalysisConfig,

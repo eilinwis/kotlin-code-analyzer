@@ -1,11 +1,11 @@
 package dev.kotlin.analyzer.domain
 
 @JvmInline
-value class RuleId(val value: String) {
+public value class RuleId(public val value: String) {
     override fun toString(): String = value
 }
 
 @JvmInline
-value class RuleSetId(val value: String) {
+public value class RuleSetId(public val value: String) {
     override fun toString(): String = value
 }

@@ -2,15 +2,15 @@ package dev.kotlin.analyzer.domain
 
 import java.nio.file.Path
 
-enum class ReportFormat {
+public enum class ReportFormat {
     CONSOLE,
     JSON,
     SARIF,
     CHECKSTYLE,
 }
 
-interface Reporter {
-    val format: ReportFormat
+public interface Reporter {
+    public val format: ReportFormat
 
-    fun report(result: AnalysisResult, output: Path? = null)
+    public fun report(result: AnalysisResult, output: Path? = null)
 }

@@ -13,7 +13,7 @@ import dev.kotlin.analyzer.psi.PsiElementLocator
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.KtUnaryExpression
 
-class NotNullAssertionRule : AbstractPsiRule(
+public class NotNullAssertionRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("NotNullAssertion"),
         ruleSetId = RuleSetId("builtin.psi"),

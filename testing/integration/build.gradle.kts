@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.1.20"
-    kotlin("plugin.serialization") version "2.1.20"
+    kotlin("jvm")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 dependencies {
@@ -12,4 +12,8 @@ dependencies {
 tasks.test {
     dependsOn(":cli:shadowJar")
     systemProperty("project.root", rootProject.projectDir.absolutePath)
+    systemProperty(
+        "cli.jar",
+        project(":cli").tasks.named<Jar>("shadowJar").get().archiveFile.get().asFile.absolutePath,
+    )
 }

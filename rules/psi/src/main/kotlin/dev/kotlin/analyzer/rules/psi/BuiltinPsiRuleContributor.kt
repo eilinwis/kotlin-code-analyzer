@@ -5,7 +5,7 @@ import dev.kotlin.analyzer.api.RuleConfigurationSchema
 import dev.kotlin.analyzer.domain.RuleSetId
 import dev.kotlin.analyzer.rules.psi.rules.*
 
-class BuiltinPsiRuleContributor : RuleContributor {
+public class BuiltinPsiRuleContributor : RuleContributor {
     override val id: RuleSetId = RuleSetId("builtin.psi")
 
     override fun contribute(schema: RuleConfigurationSchema): List<dev.kotlin.analyzer.api.Rule> = listOf(
@@ -19,6 +19,6 @@ class BuiltinPsiRuleContributor : RuleContributor {
     )
 }
 
-object BuiltinPsiRules {
-    val contributor: RuleContributor = BuiltinPsiRuleContributor()
+public object BuiltinPsiRules {
+    public val contributor: RuleContributor = BuiltinPsiRuleContributor()
 }

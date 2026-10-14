@@ -35,5 +35,3 @@ include(
 )
 
 project(":rules:builtin-psi").projectDir = file("rules/psi")
-
-project(":rules:builtin-psi").projectDir = file("rules/psi")

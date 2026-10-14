@@ -1,6 +1,6 @@
 package dev.kotlin.analyzer.domain
 
-data class RuleDescriptor(
+public data class RuleDescriptor(
     val id: RuleId,
     val ruleSetId: RuleSetId,
     val description: String,
