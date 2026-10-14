@@ -78,7 +78,9 @@ subprojects {
         )
         publishToMavenCentral(automaticRelease = false)
         // Signing is required by Maven Central; JitPack, mavenLocal and GitHub Packages builds run without keys.
-        if (project.hasProperty("signingInMemoryKey") || project.hasProperty("signing.keyId")) {
+        // CI passes unset secrets as empty strings, so check for a non-blank key rather than presence.
+        val signingKey = project.findProperty("signingInMemoryKey")?.toString()
+        if (!signingKey.isNullOrBlank() || project.hasProperty("signing.keyId")) {
             signAllPublications()
         }
 
