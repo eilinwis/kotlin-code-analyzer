@@ -1,0 +1,4 @@
+jdk:
+  - openjdk17
+install:
+  - ./gradlew publishToMavenLocal -PGROUP=com.github.eilinwis.kotlin-code-analyzer -PVERSION_NAME=$VERSION -x test --no-daemon

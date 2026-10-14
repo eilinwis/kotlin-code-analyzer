@@ -77,7 +77,10 @@ subprojects {
             ),
         )
         publishToMavenCentral(automaticRelease = false)
-        signAllPublications()
+        // Signing is required by Maven Central; JitPack, mavenLocal and GitHub Packages builds run without keys.
+        if (project.hasProperty("signingInMemoryKey") || project.hasProperty("signing.keyId")) {
+            signAllPublications()
+        }
 
         pom {
             name.set(artifactId)
@@ -105,6 +108,16 @@ subprojects {
                 url.set("https://github.com/eilinwis/kotlin-code-analyzer")
                 connection.set("scm:git:git://github.com/eilinwis/kotlin-code-analyzer.git")
                 developerConnection.set("scm:git:ssh://git@github.com/eilinwis/kotlin-code-analyzer.git")
+            }
+        }
+    }
+
+    configure<PublishingExtension> {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/eilinwis/kotlin-code-analyzer")
+                credentials(PasswordCredentials::class)
             }
         }
     }
