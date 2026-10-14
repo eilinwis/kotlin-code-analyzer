@@ -25,44 +25,33 @@ java -jar cli/build/libs/cli-*-all.jar rules list
 
 ## Installation
 
+Everything ships as a single artifact `io.github.eilinwis:kotlin-code-analyzer`: rule API, engine, built-in rules, configuration, reporting, test kit and CLI.
+
 ### CLI
 
-Download `cli-<version>-all.jar` from [GitHub Releases](https://github.com/eilinwis/kotlin-code-analyzer/releases) and run it with Java 17+:
+Download `kotlin-code-analyzer-<version>-all.jar` from Maven Central or `cli-<version>-all.jar` from [GitHub Releases](https://github.com/eilinwis/kotlin-code-analyzer/releases) and run it with Java 17+:
 
 ```bash
-java -jar cli-<version>-all.jar analyze ./
+java -jar kotlin-code-analyzer-<version>-all.jar analyze ./
 ```
 
-### Libraries
+### Library
 
-| Artifact                  | Purpose                                        |
-|---------------------------|------------------------------------------------|
-| `analyzer-api`            | API for writing custom rules                   |
-| `analyzer-domain`         | Findings, locations, severities, configuration |
-| `analyzer-psi`            | Kotlin PSI environment and helpers             |
-| `analyzer-engine`         | Rule engine                                    |
-| `analyzer-testkit`        | Test harness for custom rules                  |
-| `analyzer-rules-psi`      | Built-in PSI rules                             |
-| `analyzer-rules-semantic` | Built-in semantic rules (Analysis API)         |
-| `analyzer-analysis`       | Standalone Analysis API session                |
-| `analyzer-config`         | YAML configuration loader                      |
-| `analyzer-reporting`      | Report formatters                              |
-| `analyzer-cli`            | Command-line interface                         |
-
-**Maven Central**
+The Kotlin Analysis API is not published to Maven Central, so add the JetBrains repositories next to it:
 
 ```kotlin
 repositories {
     mavenCentral()
+    maven("https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
+    maven("https://redirector.kotlinlang.org/maven/kotlin-ide-plugin-dependencies")
 }
 
 dependencies {
-    compileOnly("io.github.eilinwis:analyzer-api:<version>")
-    testImplementation("io.github.eilinwis:analyzer-testkit:<version>")
+    implementation("io.github.eilinwis:kotlin-code-analyzer:<version>")
 }
 ```
 
-**GitHub Packages** — requires a personal access token with the `read:packages` scope, even for public packages:
+**GitHub Packages** — the same artifact is published there too; it requires a personal access token with the `read:packages` scope, even for public packages:
 
 ```kotlin
 repositories {
@@ -74,21 +63,6 @@ repositories {
     }
 }
 ```
-
-### Analysis API dependencies
-
-`analyzer-analysis` and `analyzer-rules-semantic` depend on Kotlin Analysis API artifacts that are not published to Maven Central. Add the JetBrains repositories when using these modules:
-
-```kotlin
-repositories {
-    mavenCentral()
-    maven("https://packages.jetbrains.team/maven/p/ij/intellij-dependencies")
-    maven("https://redirector.kotlinlang.org/maven/kotlin-ide-plugin-dependencies")
-    maven("https://www.jetbrains.com/intellij-repository/releases")
-}
-```
-
-The PSI-only modules (`analyzer-api`, `analyzer-domain`, `analyzer-psi`, `analyzer-engine`, `analyzer-testkit`, `analyzer-rules-psi`) resolve from Maven Central alone.
 
 ## Built-in Rules
 

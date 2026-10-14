@@ -16,8 +16,8 @@ allprojects {
     version = property("VERSION_NAME").toString()
 }
 
-// Modules published to Maven repositories; each declares POM_ARTIFACT_ID in its gradle.properties.
-val publishedModules = setOf(
+// Library modules keep an explicit public API; all of them ship inside the :distribution artifact.
+val libraryModules = setOf(
     ":core:domain",
     ":core:api",
     ":core:engine",
@@ -28,7 +28,6 @@ val publishedModules = setOf(
     ":rules:builtin-psi",
     ":rules:semantic",
     ":testing:testkit",
-    ":cli",
 )
 
 subprojects {
@@ -48,13 +47,7 @@ subprojects {
         add("testRuntimeOnly", "org.junit.platform:junit-platform-launcher")
     }
 
-    if (path !in publishedModules) return@subprojects
-    val artifactId = property("POM_ARTIFACT_ID").toString()
-
-    apply(plugin = "org.jetbrains.dokka-javadoc")
-    apply(plugin = "com.vanniktech.maven.publish")
-
-    if (path != ":cli") {
+    if (path in libraryModules) {
         configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension> {
             explicitApi()
         }
@@ -62,12 +55,16 @@ subprojects {
 
     tasks.withType<Jar>().configureEach {
         manifest {
-            attributes(
-                "Implementation-Title" to artifactId,
-                "Implementation-Version" to project.version,
-            )
+            attributes("Implementation-Version" to project.version)
         }
     }
+
+    // Only :distribution is published: one artifact with every module plus the CLI fat jar.
+    if (path != ":distribution") return@subprojects
+    val artifactId = property("POM_ARTIFACT_ID").toString()
+
+    apply(plugin = "org.jetbrains.dokka-javadoc")
+    apply(plugin = "com.vanniktech.maven.publish")
 
     configure<MavenPublishBaseExtension> {
         configure(
