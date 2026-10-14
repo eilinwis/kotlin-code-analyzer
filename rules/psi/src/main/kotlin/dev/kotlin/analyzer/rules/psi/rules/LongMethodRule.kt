@@ -12,7 +12,7 @@ import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import dev.kotlin.analyzer.psi.PsiElementLocator
 import org.jetbrains.kotlin.psi.KtNamedFunction
 
-class LongMethodRule : AbstractPsiRule(
+public class LongMethodRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("LongMethod"),
         ruleSetId = RuleSetId("builtin.psi"),

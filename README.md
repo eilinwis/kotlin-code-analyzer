@@ -6,19 +6,19 @@ A command-line static analysis tool for Kotlin source code. Built on **Kotlin PS
 
 ```bash
 ./gradlew :cli:shadowJar
-java -jar cli/build/libs/cli-1.0.0-all.jar analyze ./
+java -jar cli/build/libs/cli-*-all.jar analyze ./
 ```
 
 Initialize a configuration file:
 
 ```bash
-java -jar cli/build/libs/cli-1.0.0-all.jar init-config
+java -jar cli/build/libs/cli-*-all.jar init-config
 ```
 
 List available rules:
 
 ```bash
-java -jar cli/build/libs/cli-1.0.0-all.jar rules list
+java -jar cli/build/libs/cli-*-all.jar rules list
 ```
 
 ## Built-in Rules

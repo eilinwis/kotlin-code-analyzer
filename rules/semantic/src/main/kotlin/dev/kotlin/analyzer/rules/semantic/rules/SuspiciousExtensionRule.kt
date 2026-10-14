@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtVisitorVoid
 
 @RequiresAnalysisApi
-class SuspiciousExtensionRule : AbstractSemanticRule(
+public class SuspiciousExtensionRule : AbstractSemanticRule(
     RuleDescriptor(
         id = RuleId("SuspiciousExtension"),
         ruleSetId = RuleSetId("builtin.semantic"),

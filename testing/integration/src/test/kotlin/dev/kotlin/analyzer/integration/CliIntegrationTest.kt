@@ -10,7 +10,7 @@ class CliIntegrationTest {
     fun `cli analyze finds issues in bad project`() {
         val projectRoot = Path(System.getProperty("project.root", System.getProperty("user.dir")))
         val badProject = projectRoot.resolve("samples/bad-project/src/main/kotlin")
-        val jar = projectRoot.resolve("cli/build/libs/cli-1.0.0-all.jar")
+        val jar = Path(System.getProperty("cli.jar"))
 
         val process = ProcessBuilder(
             "java",

@@ -1,6 +1,6 @@
 package dev.kotlin.analyzer.domain
 
-data class AnalysisResult(
+public data class AnalysisResult(
     val findings: List<Finding>,
     val filesAnalyzed: Int,
     val rulesExecuted: Int,

@@ -1,14 +1,35 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
+
 plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kover) apply false
     alias(libs.plugins.shadow) apply false
+    alias(libs.plugins.dokka.javadoc) apply false
+    alias(libs.plugins.maven.publish) apply false
 }
 
 allprojects {
-    group = "dev.kotlin.analyzer"
-    version = "1.0.0"
+    group = property("GROUP").toString()
+    version = property("VERSION_NAME").toString()
 }
+
+// Modules published to Maven repositories; each declares POM_ARTIFACT_ID in its gradle.properties.
+val publishedModules = setOf(
+    ":core:domain",
+    ":core:api",
+    ":core:engine",
+    ":infrastructure:psi",
+    ":infrastructure:analysis",
+    ":infrastructure:config",
+    ":infrastructure:reporting",
+    ":rules:builtin-psi",
+    ":rules:semantic",
+    ":testing:testkit",
+    ":cli",
+)
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
@@ -25,5 +46,66 @@ subprojects {
     dependencies {
         add("testImplementation", rootProject.libs.junit.jupiter)
         add("testRuntimeOnly", "org.junit.platform:junit-platform-launcher")
+    }
+
+    if (path !in publishedModules) return@subprojects
+    val artifactId = property("POM_ARTIFACT_ID").toString()
+
+    apply(plugin = "org.jetbrains.dokka-javadoc")
+    apply(plugin = "com.vanniktech.maven.publish")
+
+    if (path != ":cli") {
+        configure<org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension> {
+            explicitApi()
+        }
+    }
+
+    tasks.withType<Jar>().configureEach {
+        manifest {
+            attributes(
+                "Implementation-Title" to artifactId,
+                "Implementation-Version" to project.version,
+            )
+        }
+    }
+
+    configure<MavenPublishBaseExtension> {
+        configure(
+            KotlinJvm(
+                javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationJavadoc"),
+                sourcesJar = true,
+            ),
+        )
+        publishToMavenCentral(automaticRelease = false)
+        signAllPublications()
+
+        pom {
+            name.set(artifactId)
+            description.set(
+                project.findProperty("POM_DESCRIPTION")?.toString()
+                    ?: "Kotlin Code Analyzer module $artifactId",
+            )
+            inceptionYear.set("2026")
+            url.set("https://github.com/eilinwis/kotlin-code-analyzer")
+            licenses {
+                license {
+                    name.set("The Apache License, Version 2.0")
+                    url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    distribution.set("repo")
+                }
+            }
+            developers {
+                developer {
+                    id.set("eilinwis")
+                    name.set("Roman Kudriavtsev")
+                    url.set("https://github.com/eilinwis")
+                }
+            }
+            scm {
+                url.set("https://github.com/eilinwis/kotlin-code-analyzer")
+                connection.set("scm:git:git://github.com/eilinwis/kotlin-code-analyzer.git")
+                developerConnection.set("scm:git:ssh://git@github.com/eilinwis/kotlin-code-analyzer.git")
+            }
+        }
     }
 }

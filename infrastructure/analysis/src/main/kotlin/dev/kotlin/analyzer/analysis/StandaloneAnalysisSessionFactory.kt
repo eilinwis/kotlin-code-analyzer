@@ -14,11 +14,11 @@ import org.jetbrains.kotlin.platform.jvm.JvmPlatforms
 import java.nio.file.Path
 import java.nio.file.Paths
 
-class StandaloneAnalysisSessionFactory : AutoCloseable {
+public class StandaloneAnalysisSessionFactory : AutoCloseable {
     private val disposable = Disposer.newDisposable("StandaloneAnalysisSessionFactory")
     private var aaSession: StandaloneAnalysisAPISession? = null
 
-    fun createSession(
+    public fun createSession(
         @Suppress("UNUSED_PARAMETER") psiEnvironment: KotlinPsiEnvironment,
         sourceFiles: List<KotlinAnalyzedFile>,
     ): AnalysisSession {

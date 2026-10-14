@@ -9,7 +9,7 @@ import dev.kotlin.analyzer.psi.KotlinAnalyzedFile
 import org.jetbrains.kotlin.psi.KtImportDirective
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 
-class UnusedImportRule : AbstractPsiRule(
+public class UnusedImportRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("UnusedImport"),
         ruleSetId = RuleSetId("builtin.psi"),

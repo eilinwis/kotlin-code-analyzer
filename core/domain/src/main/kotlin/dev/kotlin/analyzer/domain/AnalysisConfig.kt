@@ -1,6 +1,6 @@
 package dev.kotlin.analyzer.domain
 
-data class AnalysisConfig(
+public data class AnalysisConfig(
     val ruleSets: Map<RuleSetId, Map<RuleId, RuleConfig>> = emptyMap(),
     val excludes: List<String> = DEFAULT_EXCLUDES,
     val includes: List<String> = listOf("**/*.kt"),
@@ -8,8 +8,8 @@ data class AnalysisConfig(
     val parallel: Boolean = true,
     val jvmTarget: String = "17",
 ) {
-    companion object {
-        val DEFAULT_EXCLUDES: List<String> = listOf(
+    public companion object {
+        public val DEFAULT_EXCLUDES: List<String> = listOf(
             "**/build/**",
             "**/.gradle/**",
             "**/generated/**",

@@ -3,8 +3,8 @@ package dev.kotlin.analyzer.psi
 import com.intellij.psi.PsiElement
 import dev.kotlin.analyzer.domain.Location
 
-object PsiElementLocator {
-    fun toLocation(path: String, element: PsiElement): Location {
+public object PsiElementLocator {
+    public fun toLocation(path: String, element: PsiElement): Location {
         val document = element.containingFile.viewProvider.document
             ?: return Location(path, line = 1, column = 1)
 

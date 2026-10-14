@@ -1,10 +1,10 @@
 package dev.kotlin.analyzer.domain
 
-enum class Severity {
+public enum class Severity {
     INFO,
     WARNING,
     ERROR,
     ;
 
-    fun isAtLeast(other: Severity): Boolean = ordinal >= other.ordinal
+    public fun isAtLeast(other: Severity): Boolean = ordinal >= other.ordinal
 }
