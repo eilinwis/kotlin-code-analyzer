@@ -154,7 +154,8 @@ class InitConfigCommand : CliktCommand(name = "init-config") {
 
 class VersionCommand : CliktCommand(name = "version") {
     override fun run() {
-        echo("kotlin-code-analyzer 0.1.0-SNAPSHOT")
+        val version = VersionCommand::class.java.`package`.implementationVersion ?: "dev"
+        echo("kotlin-code-analyzer $version")
     }
 }
 

@@ -7,7 +7,7 @@ import dev.kotlin.analyzer.rules.semantic.rules.ScopeFunctionMisuseRule
 import dev.kotlin.analyzer.rules.semantic.rules.SuspiciousExtensionRule
 import dev.kotlin.analyzer.rules.semantic.rules.UnsafeNullabilityRule
 
-class BuiltinSemanticRuleContributor : RuleContributor {
+public class BuiltinSemanticRuleContributor : RuleContributor {
     override val id: RuleSetId = RuleSetId("builtin.semantic")
 
     override fun contribute(schema: RuleConfigurationSchema): List<dev.kotlin.analyzer.api.Rule> = listOf(
@@ -17,6 +17,6 @@ class BuiltinSemanticRuleContributor : RuleContributor {
     )
 }
 
-object BuiltinSemanticRules {
-    val contributor: RuleContributor = BuiltinSemanticRuleContributor()
+public object BuiltinSemanticRules {
+    public val contributor: RuleContributor = BuiltinSemanticRuleContributor()
 }

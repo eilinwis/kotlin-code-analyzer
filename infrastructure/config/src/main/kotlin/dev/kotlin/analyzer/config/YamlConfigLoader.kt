@@ -12,10 +12,10 @@ import java.nio.file.Path
 import kotlin.io.path.exists
 import kotlin.io.path.readText
 
-class YamlConfigLoader {
+public class YamlConfigLoader {
     private val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
-    fun load(path: Path?): AnalysisConfig {
+    public fun load(path: Path?): AnalysisConfig {
         if (path == null || !path.exists()) {
             return loadFromYaml(defaultYaml())
         }
@@ -25,7 +25,7 @@ class YamlConfigLoader {
     private fun loadFromYaml(yamlText: String): AnalysisConfig =
         yaml.decodeFromString(ConfigFile.serializer(), yamlText).toDomain()
 
-    fun defaultYaml(): String = DEFAULT_CONFIG_YAML
+    public fun defaultYaml(): String = DEFAULT_CONFIG_YAML
 
     private companion object {
         const val DEFAULT_CONFIG_YAML = """
@@ -125,8 +125,8 @@ internal data class RuleSection(
     )
 }
 
-class ConfigValidator {
-    fun validate(config: AnalysisConfig): List<String> {
+public class ConfigValidator {
+    public fun validate(config: AnalysisConfig): List<String> {
         val errors = mutableListOf<String>()
         config.ruleSets.forEach { (setId, rules) ->
             rules.forEach { (ruleId, ruleConfig) ->

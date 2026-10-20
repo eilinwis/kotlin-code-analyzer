@@ -11,7 +11,7 @@ import kotlinx.serialization.json.Json
 import java.nio.file.Path
 import kotlin.io.path.writeText
 
-class ConsoleReporter : Reporter {
+public class ConsoleReporter : Reporter {
     override val format: ReportFormat = ReportFormat.CONSOLE
 
     override fun report(result: AnalysisResult, output: Path?) {
@@ -50,7 +50,7 @@ class ConsoleReporter : Reporter {
     }
 }
 
-class JsonReporter : Reporter {
+public class JsonReporter : Reporter {
     override val format: ReportFormat = ReportFormat.JSON
 
     private val json = Json { prettyPrint = true }
@@ -108,7 +108,7 @@ internal data class JsonFinding(
     }
 }
 
-class SarifReporter(
+public class SarifReporter(
     private val toolVersion: String = "0.1.0",
 ) : Reporter {
     override val format: ReportFormat = ReportFormat.SARIF
@@ -184,7 +184,7 @@ $resultsJson
         "\"" + value.replace("\\", "\\\\").replace("\"", "\\\"") + "\""
 }
 
-class CheckstyleXmlReporter : Reporter {
+public class CheckstyleXmlReporter : Reporter {
     override val format: ReportFormat = ReportFormat.CHECKSTYLE
 
     override fun report(result: AnalysisResult, output: Path?) {
@@ -221,8 +221,8 @@ class CheckstyleXmlReporter : Reporter {
             .replace("\"", "&quot;")
 }
 
-class ReporterFactory {
-    fun create(formats: Set<ReportFormat>): List<Reporter> =
+public class ReporterFactory {
+    public fun create(formats: Set<ReportFormat>): List<Reporter> =
         formats.map { format ->
             when (format) {
                 ReportFormat.CONSOLE -> ConsoleReporter()
@@ -233,7 +233,7 @@ class ReporterFactory {
         }
 }
 
-fun parseReportFormats(values: List<String>): Set<ReportFormat> =
+public fun parseReportFormats(values: List<String>): Set<ReportFormat> =
     values.flatMap { value ->
         value.split(",").map { it.trim().uppercase() }
     }.map { name ->

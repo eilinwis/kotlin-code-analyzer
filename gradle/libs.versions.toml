@@ -8,6 +8,8 @@ junit = "5.11.4"
 strikt = "0.35.1"
 kover = "0.9.1"
 shadow = "8.3.6"
+dokka = "2.1.0"
+maven-publish = "0.34.0"
 slf4j = "2.0.16"
 logback = "1.5.16"
 caffeine = "2.9.3"
@@ -42,3 +44,5 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "dokka" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }

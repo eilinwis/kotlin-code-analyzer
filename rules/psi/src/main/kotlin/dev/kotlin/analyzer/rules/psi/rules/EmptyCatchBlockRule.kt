@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtCatchClause
 import org.jetbrains.kotlin.psi.KtExpression
 
-class EmptyCatchBlockRule : AbstractPsiRule(
+public class EmptyCatchBlockRule : AbstractPsiRule(
     RuleDescriptor(
         id = RuleId("EmptyCatchBlock"),
         ruleSetId = RuleSetId("builtin.psi"),

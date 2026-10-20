@@ -32,8 +32,7 @@ include(
     ":testing:integration",
     ":testing:rule-tests",
     ":samples:custom-rules",
+    ":distribution",
 )
-
-project(":rules:builtin-psi").projectDir = file("rules/psi")
 
 project(":rules:builtin-psi").projectDir = file("rules/psi")
